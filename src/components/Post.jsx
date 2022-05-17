@@ -1,4 +1,9 @@
+import { useContext } from "react"
+import { UserContext } from "../App"
+
 const Post = ({ content, image, user }) => {
+  const isCurrentUser = useContext(UserContext)
+  let currentUser = isCurrentUser === user
   return (
     <>
       {image && (
@@ -9,7 +14,8 @@ const Post = ({ content, image, user }) => {
         />
       )}
       <h2>{content}</h2>
-      <h2>{user}</h2>
+      <h2 style={{ color: currentUser && "green" }}>{user}</h2>
+      {currentUser && <button>Delete</button>}
     </>
   )
 }

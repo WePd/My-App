@@ -1,15 +1,17 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
+import { PostContext } from "../App"
 
-const CreatePost = ({ user, handlePost }) => {
+const CreatePost = ({ user }) => {
   const [content, setContent] = useState("")
   const [image, setImag] = useState(null) // file
   const imageRef = useRef()
+  const { dispatch } = useContext(PostContext)
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const post = { content, image, user }
 
-    handlePost(post)
+    dispatch({ type: "ADD_POST", payload: { post } })
 
     setContent("") // input输入框在每次sbumit之后清空
     imageRef.current.value = "" // 受控组件
