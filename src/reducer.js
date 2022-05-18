@@ -5,7 +5,8 @@ const postReducer = (state, action) => {
       return { posts: [newPost, ...state.posts] }
     }
     case "DELETE_POST": {
-      return
+      const deletePostId = action.payload.id // 要删除的id
+      return { posts: state.posts.filter((item) => item.id !== deletePostId) }
     }
     default:
       return state

@@ -9,7 +9,7 @@ const CreatePost = ({ user }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const post = { content, image, user }
+    const post = { content, image, user, id: Date.now() }
 
     dispatch({ type: "ADD_POST", payload: { post } })
 
